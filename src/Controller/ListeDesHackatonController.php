@@ -14,7 +14,7 @@ class ListeDesHackatonController extends AbstractController
     #[Route('hackaton', name: 'app_liste_des_hackaton')]
     public function index(ManagerRegistry $doctrine): Response
     {
-        $repository = $doctrine->getRepository(Hackaton::class);
+        $repository = $doctrine->getRepository(EntityHackaton::class);
         $hackaton = $repository->findAll();
         return $this->render('liste_des_hackaton/index.html.twig', [
             'controller_name' => 'ListeDesHackatonController',

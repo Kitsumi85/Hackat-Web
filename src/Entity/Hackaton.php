@@ -29,7 +29,7 @@ class Hackaton
     #[ORM\Column(length: 255)]
     private ?string $lieu = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $heure = null;
 
     public function getId(): ?int
