@@ -21,4 +21,12 @@ class ListeDesHackatonController extends AbstractController
             'hackaton' => $hackaton
         ]);
     }
+    #[Route('accueil', name: 'app_accueil_hackathon')]
+    public function accueilindex(): Response
+    {
+        return $this->render('accueil.html.twig', [
+            'controller_name' => 'La page des hackathons',
+            'text' => 'Bienvenue sur la page de présentation des hackathons'
+        ]);
+    }
 }
