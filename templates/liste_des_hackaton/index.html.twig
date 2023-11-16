@@ -9,9 +9,18 @@
 </style>
 
 <div class="example-wrapper">
-    {% for unHackaton in Hackaton %}
-
-
+    {% for unHackaton in hackaton %}
+    <div class="card" style="width: 18rem; margin-right: 1%;">
+					<div class="card-body">
+						<h5 class="card-title">
+							Hackaton du bled
+						</h5>
+						<p>
+                        Date limite pour l'inscription {{unHackaton.DateLimInsc|date('d/m/y')}}
+						</p>
+						
+					</div>
+				</div>
     {% endfor %}
 </div>
 {% endblock %}
