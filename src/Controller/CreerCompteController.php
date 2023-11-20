@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 class CreerCompteController extends AbstractController
 {
     #[Route('/CreerCompte', name: 'CreerCompte')]
@@ -17,7 +18,7 @@ class CreerCompteController extends AbstractController
         $compte->setPrenom('Guer');
         $compte->setMel('nGuer@gmail.com');
         $compte->setTel('0123456789');
-        $compte->setDateNaissance(new DateTime(1985-11-20));
+        $compte->setDateNaissance(new DateTime('d/m/y'));
         $compte->setPortfolioURL('https://portfolioHaz.fr');
         dump($compte);
         $entityManager = $doctrine->getManager();
