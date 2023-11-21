@@ -13,12 +13,12 @@ class CreerCompteController extends AbstractController
     #[Route('/CreerCompte', name: 'CreerCompte')]
     public function index(ManagerRegistry $doctrine)
     {
-        $compte = new Compte;
-        $compte->setNom('Nez');
-        $compte->setPrenom('Guer');
-        $compte->setMel('nGuer@gmail.com');
+        $compte = new Compte();
+        $compte->setNom('Ne');
+        $compte->setPrenom('Gui');
+        $compte->setMel('nGui@gmail.com');
         $compte->setTel('0123456789');
-        $compte->setDateNaissance(new DateTime('d/m/y'));
+        $compte->setDateNaissance(new \DateTime('d/m/y'));
         $compte->setPortfolioURL('https://portfolioHaz.fr');
         dump($compte);
         $entityManager = $doctrine->getManager();
