@@ -6,10 +6,11 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use DateTime;
 
 class CreerCompteController extends AbstractController
 {
-    #[Route('/CreerCompte', name: 'CreerCompte')]
+    #[Route('/CreerCompte', name: 'app_creer_compte')]
     public function index(ManagerRegistry $doctrine)
     {
         $compte = new Compte;
@@ -23,5 +24,6 @@ class CreerCompteController extends AbstractController
         $entityManager = $doctrine->getManager();
         $entityManager->persist($compte);
         $entityManager->flush();
+        return $this->render('creer_compte/CreerCompte.html.twig');
     }
 }
