@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+{% block title %}HackatWeb{% endblock %}
 {% block body %}
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
@@ -12,7 +13,7 @@
 {{form_row(form.tel)}}
 {{form_row(form.date_naissance)}}
 {{form_row(form.portfolio_URL)}}
-<input type="submit" name="btn" value="Ajouter">
+<input type="submit" name="btn" value="Créer">
 {{form_end(form)}}
 
 
