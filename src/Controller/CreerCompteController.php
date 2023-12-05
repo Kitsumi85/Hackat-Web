@@ -6,6 +6,8 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Controller\DateTime;
+
 
 class CreerCompteController extends AbstractController
 {
@@ -17,7 +19,7 @@ class CreerCompteController extends AbstractController
         $compte->setPrenom('Gui');
         $compte->setMel('nGui@gmail.com');
         $compte->setTel('0123456789');
-        $compte->setDateNaissance(new \DateTime('d/m/y'));
+        $compte->setDateNaissance(new \DateTime('2000-08-15'));
         $compte->setPortfolioURL('https://portfolioHaz.fr');
         dump($compte);
         $entityManager = $doctrine->getManager();
