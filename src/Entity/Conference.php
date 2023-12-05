@@ -8,10 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: ConferenceRepository::class)]
 class Conference extends Evenement
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+
 
     #[ORM\Column(length: 255)]
     private ?string $theme = null;
@@ -19,10 +16,6 @@ class Conference extends Evenement
     #[ORM\ManyToOne]
     private ?Intervenant $UnIntervenant = null;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getTheme(): ?string
     {
