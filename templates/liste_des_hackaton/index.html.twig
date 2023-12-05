@@ -9,12 +9,12 @@
 </style>
 <div class="row" style="margin-top: 1%; margin-left: 1%; margin-right: 1%;">
 {% for unHackaton in hackaton %}
-  <div class="col-sm-6">
+  <div class="col-sm-3">
     <div class="card" style="margin-bottom: 1%;" >
       <div class="card-body">
         <h5 class="card-title">Hackaton du {{unHackaton.DateDebut|date('d/m/y')}}</h5>
         <p class="card-text">Date limite pour l'inscription {{unHackaton.DateLimInsc|date('d/m/y')}}</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <a href="{{path('app_detail_des_hackaton', {id:unHackaton.id})}}" class="btn btn-primary">Detail</a>
       </div>
     </div>
   </div>
