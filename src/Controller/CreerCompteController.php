@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 use App\Entity\Compte;
+use App\Form\CreerCompteType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 use App\Controller\DateTime;
 
 
@@ -26,5 +28,23 @@ class CreerCompteController extends AbstractController
         $entityManager->persist($compte);
         $entityManager->flush();
         return $this->render('creer_compte/CreerCompte.html.twig');
+    }
+
+    #[Route('/Creer_Compte_Form', name: 'form_creer_compte')]
+    public function addCompte(Request $request, ManagerRegistry $doctrine): Response
+    {
+        $compte = new Compte();
+        $form=$this->createForm(CreerCompteType::class, $compte);
+        $form->handleRequest($request);
+        if($form->isSubmitted() and $form->isValid()){
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($compte);
+            $entityManager->flush();
+            return $this->redirectToRoute('app_liste_des_hackaton');
+        }
+        return $this->render('creer_compte/CreerCompte.html.twig', [
+            'controller_name' => 'CreerCompteController',
+            'form' => $form->createView(),
+        ]);
     }
 }
