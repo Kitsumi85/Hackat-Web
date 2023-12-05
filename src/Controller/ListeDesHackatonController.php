@@ -29,4 +29,13 @@ class ListeDesHackatonController extends AbstractController
             'text' => 'Bienvenue sur la page de présentation des hackathons'
         ]);
     }
+    #[Route('detailHackaton/{id}', name: 'app_detail_des_hackaton')]
+    public function detail(ManagerRegistry $doctrine, $id): Response
+    {
+        $repository = $doctrine->getRepository(EntityHackaton::class);
+        $hackaton = $repository->find($id);
+        return $this->render('liste_des_hackaton/detail.html.twig', [
+            'hackaton' => $hackaton
+        ]);
+    }
 }
