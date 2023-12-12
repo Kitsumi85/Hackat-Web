@@ -1,23 +1,35 @@
 {% extends 'base.html.twig' %}
 
+
 {% block title %}Hackaton{% endblock %}
+
 
 {% block body %}
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
-<div class="row" style="margin-top: 1%; margin-left: 1%; margin-right: 1%;">
+
+<table
+    data-toggle="table"
+    data-page-size="20"
+    data-pagination="true"
+    data-search="true">
+<thead>
+<tr>
+<th>Date de début</th>
+<th>Date limite d'inscription</th>
+<th>Bouton des détail</th>
+</tr>
+</thead>
 {% for unHackaton in hackaton %}
-  <div class="col-sm-3">
-    <div class="card" style="margin-bottom: 1%;" >
-      <div class="card-body">
-        <h5 class="card-title">Hackaton du {{unHackaton.DateDebut|date('d/m/y')}}</h5>
-        <p class="card-text">Date limite pour l'inscription {{unHackaton.DateLimInsc|date('d/m/y')}}</p>
-        <a href="{{path('app_detail_des_hackaton', {id:unHackaton.id})}}" class="btn btn-primary">Detail</a>
-      </div>
-    </div>
-  </div>
-  {% endfor %}
-</div>
+<tr>
+  <td>{{unHackaton.DateDebut|date('d/m/y')}}</td>
+  <td>{{unHackaton.DateLimInsc|date('d/m/y')}}</td>
+  <td><a href="{{path('app_detail_des_hackaton', {id:unHackaton.id})}}" class="btn btn-primary">Detail</a></td>
+</tr>
+{% endfor %}
+
+</table>
+
 {% endblock %}
