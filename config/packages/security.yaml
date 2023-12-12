@@ -1,15 +1,15 @@
 security:
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
-        App\Entity\Utilisateur:
+        App\Entity\Compte:
             #plaintext signifie que les mots de passe ne sont pas hashés
             algorithm: plaintext
     providers:
         app_user_provider:
             entity:
             # classe d'utilisateurs (elle peut avoir un autre nom que Utilisateur)
-            class: App\Entity\Utilisateur
-            property: mel # propriété de la classe d'utilisateurs qui joue le rôle de login
+                class: App\Entity\Compte
+                property: mel # propriété de la classe d'utilisateurs qui joue le rôle de login
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
