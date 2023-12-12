@@ -32,6 +32,9 @@ class Compte
     #[ORM\Column(length: 255)]
     private ?string $portfolio_URL = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $password = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +108,18 @@ class Compte
     public function setPortfolioURL(string $portfolio_URL): static
     {
         $this->portfolio_URL = $portfolio_URL;
+
+        return $this;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): static
+    {
+        $this->password = $password;
 
         return $this;
     }

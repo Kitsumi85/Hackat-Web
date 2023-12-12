@@ -22,6 +22,7 @@ class CreerCompteController extends AbstractController
         $compte->setTel('0123456789');
         $compte->setDateNaissance(new \DateTime('2000-08-15'));
         $compte->setPortfolioURL('https://portfolioHaz.fr');
+        $compte->setPassword('');
         dump($compte);
         $entityManager = $doctrine->getManager();
         $entityManager->persist($compte);

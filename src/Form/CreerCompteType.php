@@ -18,6 +18,7 @@ class CreerCompteType extends AbstractType
             ->add('tel')
             ->add('date_naissance')
             ->add('portfolio_URL')
+            ->add('password')
         ;
     }
 
