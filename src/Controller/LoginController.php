@@ -12,9 +12,11 @@ class LoginController extends AbstractController
 public function index(AuthenticationUtils $authenticationUtils): Response
 {
 // last username entered by the user
+$errors = $authenticationUtils->getLastAuthenticationError();
 $lastUsername = $authenticationUtils->getLastUsername();
 return $this->render('login/index.html.twig', [
 'last_username' => $lastUsername,
+'errors'=>$errors
 ]);
 }
 
