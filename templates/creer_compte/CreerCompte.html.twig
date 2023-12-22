@@ -14,9 +14,9 @@
 {{form_row(form.date_naissance)}}
 {{form_row(form.portfolio_URL)}}
 {{form_row(form.password)}}
-<input type="submit" name="btn" value="Créer">
+<input class="btn btn-primary" type="submit" name="btn" value="Créer">
 {{form_end(form)}}
 
-<a href="{{path('app_login')}}"<button type="button" class="btn btn-dark">Me Connecter</button></a>
+<a href="{{path('app_login')}}"<button type="button" class="btn btn-primary">Me Connecter</button></a>
 
 {% endblock %}
