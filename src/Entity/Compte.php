@@ -7,6 +7,11 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+
+#[UniqueEntity('mel', message: 'ladresse mail a déja été utilisé')]
+#[UniqueEntity('tel', message: 'le numéro de téléphone a déja été utilisé')]
 
 #[ORM\Entity(repositoryClass: CompteRepository::class)]
 class Compte implements UserInterface, PasswordAuthenticatedUserInterface
@@ -21,24 +26,48 @@ class Compte implements UserInterface, PasswordAuthenticatedUserInterface
     private $roles = [];
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotNull(
+        message: 'Veuillez remplir le champ',
+    )]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotNull(
+        message: 'Veuillez remplir le champ',
+    )]
     private ?string $prenom = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotNull(
+        message: 'Veuillez remplir le champ',
+    )]
+    #[Assert\Email(
+        message: 'l adresse mail est mal écrit.',
+    )]
     private ?string $mel = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotNull(
+        message: 'Veuillez remplir le champ',
+    )]
     private ?string $tel = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\NotNull(
+        message: 'Veuillez remplir le champ',
+    )]
     private ?\DateTimeInterface $date_naissance = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotNull(
+        message: 'Veuillez remplir le champ',
+    )]
     private ?string $portfolio_URL = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotNull(
+        message: 'Veuillez remplir le champ',
+    )]
     private ?string $password = null;
     
 
