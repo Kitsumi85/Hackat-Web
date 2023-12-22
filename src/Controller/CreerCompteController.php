@@ -37,6 +37,7 @@ class CreerCompteController extends AbstractController
         $form=$this->createForm(CreerCompteType::class, $compte);
         $form->handleRequest($request);
         if($form->isSubmitted() and $form->isValid()){
+            $compte -> setPassword(password_hash($compte->getPassword(), PASSWORD_DEFAULT));
             $entityManager = $doctrine->getManager();
             $entityManager->persist($compte);
             $entityManager->flush();

@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Compte;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -18,7 +19,7 @@ class CreerCompteType extends AbstractType
             ->add('tel')
             ->add('date_naissance')
             ->add('portfolio_URL')
-            ->add('password')
+            ->add('password',PasswordType::class)
         ;
     }
 

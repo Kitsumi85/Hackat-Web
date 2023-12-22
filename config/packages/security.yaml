@@ -3,7 +3,7 @@ security:
     password_hashers:
         App\Entity\Compte:
             #plaintext signifie que les mots de passe ne sont pas hashés
-            algorithm: plaintext
+            algorithm: bcrypt
     providers:
         app_user_provider:
             entity:
@@ -42,6 +42,7 @@ security:
 when@test:
     security:
         password_hashers:
+
             # By default, password hashers are resource intensive and take time. This is
             # important to generate secure password hashes. In tests however, secure hashes
             # are not important, waste resources and increase test times. The following
