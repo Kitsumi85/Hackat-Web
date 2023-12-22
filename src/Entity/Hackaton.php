@@ -32,6 +32,9 @@ class Hackaton
     #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $heure = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $nom = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +108,18 @@ class Hackaton
     public function setHeure(?\DateTimeInterface $heure): static
     {
         $this->heure = $heure;
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): static
+    {
+        $this->nom = $nom;
 
         return $this;
     }

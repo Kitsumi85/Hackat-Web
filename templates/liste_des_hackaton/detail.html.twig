@@ -10,7 +10,7 @@
 
 <div class="card" style="margin-left:40%; margin-right:40%; margin-top:5%;">
   <div class="card-header">
-    Hackaton du {{hackaton.DateDebut|date('d/m/y')}}
+    {{hackaton.Nom}}
   </div>
   <div class="card-body">
     <h5 class="card-title">Date limite pour l'inscription {{hackaton.DateLimInsc|date('d/m/y')}}</h5>
@@ -18,7 +18,9 @@
     <p class="card-text">Finis le {{hackaton.DateFin|date('d/m/y')}}</p>
     <p class="card-text">À {{hackaton.Lieu}}</p>
     <p class="card-text">Commence à {{hackaton.Heure|date('H:i')}} Heure</p>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') and hackaton.DateLimInsc > date() %}
     <a href="" class="btn btn-primary">S'inscrire</a>
+    {% endif %}
   </div>
 </div>
 {% endblock %}

@@ -17,6 +17,8 @@
     data-search="true">
 <thead>
 <tr style="background-color: #000000; color: white;">
+<th><FONT COLOR="white">Nom du hackaton</FONT></th>
+<th><FONT COLOR="white">Lieu du hackaton</FONT></th>
 <th><FONT COLOR="white">Date de début</FONT></th>
 <th><FONT COLOR="white">Date limite d'inscription</FONT></th>
 <th><FONT COLOR="white">Bouton des détail</FONT></th>
@@ -24,6 +26,8 @@
 </thead>
 {% for unHackaton in hackaton %}
 <tr>
+  <td>{{unHackaton.Nom}}</td>
+  <td>{{unHackaton.Lieu}}</td>
   <td>{{unHackaton.DateDebut|date('d/m/y')}}</td>
   <td>{{unHackaton.DateLimInsc|date('d/m/y')}}</td>
   <td><a href="{{path('app_detail_des_hackaton', {id:unHackaton.id})}}" class="btn btn-primary">Detail</a></td>
