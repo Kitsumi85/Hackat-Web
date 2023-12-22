@@ -6,11 +6,17 @@
 		</div>
 	{% endif %}
 
-	<form action="{{ path('app_login') }}" method="post">
-		<label for="login">email:</label>
-		<input type="text" id="login" name="_username" value="{{ last_username }}"/>
-		<label for="password">Password:</label>
-		<input type="password" id="password" name="_password"/>
-		<button type="submit">Connexion</button>
+	<center style="margin-left: 35%; margin-right: 35%; margin-top: 5%">
+		<form action="{{ path('app_login') }}" method="post">
+			<div class="mb-3">
+				<label for="login" class="form-label">Email
+				</label>
+				<input type="email" class="form-control" id="login" name="_username" value="{{ last_username }}">
+			</div>
+			<div class="mb-3">
+				<label for="password" class="form-label">Password</label>
+				<input class="form-control" id="password" name="_password"></input>
+		</div>
+		<button type="submit" class="btn btn-primary">Connexion</button>
 	</form>
-{% endblock %}
+</center>{% endblock %}
