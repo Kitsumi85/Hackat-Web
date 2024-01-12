@@ -39,7 +39,11 @@ class ListeDesHackatonController extends AbstractController
     {
         $repository = $doctrine->getRepository(EntityHackaton::class);
         $repository2 = $doctrine->getRepository(Inscription::class);
-        $inscrit = $repository2->find($id);
+        $user = $this->getUser();
+
+        $inscrit = $repository2->findOneBy(
+            ['UnHackaton' => $id,
+            'leCompte' => $user]);
         $hackaton = $repository->find($id);
         $dateLimit = $repository->GetDateLimit($hackaton->getId());
         $hackaton->setDateLimInsc(new DateTime($dateLimit['Datelimite']));
