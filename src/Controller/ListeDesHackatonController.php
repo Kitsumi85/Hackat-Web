@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Hackaton as EntityHackaton;
+use App\Entity\Inscription;
 use Doctrine\Persistence\ManagerRegistry;
 use src\Entity\Hackaton;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -33,9 +34,12 @@ class ListeDesHackatonController extends AbstractController
     public function detail(ManagerRegistry $doctrine, $id): Response
     {
         $repository = $doctrine->getRepository(EntityHackaton::class);
+        $repository2 = $doctrine->getRepository(Inscription::class);
+        $inscrit = $repository2->find($id);
         $hackaton = $repository->find($id);
         return $this->render('liste_des_hackaton/detail.html.twig', [
-            'hackaton' => $hackaton
+            'hackaton' => $hackaton,
+            'inscrit' => $inscrit
         ]);
     }
 }

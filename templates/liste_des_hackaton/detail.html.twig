@@ -18,7 +18,7 @@
     <p class="card-text">Finis le {{hackaton.DateFin|date('d/m/y')}}</p>
     <p class="card-text">À {{hackaton.Lieu}}</p>
     <p class="card-text">Commence à {{hackaton.Heure|date('H:i')}} Heure</p>
-    {% if is_granted('IS_AUTHENTICATED_FULLY') and hackaton.DateLimInsc > date() %}
+    {% if is_granted('IS_AUTHENTICATED_FULLY') and hackaton.DateLimInsc > date() and inscrit.un_hackaton_id == hackaton.id %}
     <a href="" class="btn btn-primary">S'inscrire</a>
     {% endif %}
   </div>
