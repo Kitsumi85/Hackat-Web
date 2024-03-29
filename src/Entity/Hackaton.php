@@ -17,7 +17,6 @@ class Hackaton
     #[ORM\Column(nullable: true)]
     private ?int $nbr_places_limit = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date_lim_insc = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
