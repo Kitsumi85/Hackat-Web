@@ -2,10 +2,13 @@
 {% block body %}
 
 
-
+	<style>
+	.btn-mdp {color: white; background-color : red; border-radius: 6px; padding: 6px 10px; border: none; transition: background-color 0.2s ease-in-out;}
+	.btn-mdp:hover {background-color: white; color: red;}
+	</style>
 	{% if errors %}
 		<div class="alert alert-danger">
-			{{ errors.messageKey|trans(errors.messageData, 'security') }}
+			Identifiant incorrect
 		</div>
 	{% endif %}
 
@@ -22,7 +25,8 @@
 		</div>
 		<button type="submit" class="btn btn-primary">Connexion</button>
 	</form>
+	<br>
 	<form>
-		<button>Mot de passe oublié</button>
+		<button class="btn-mdp">Mot de passe oublié</button>
 	</form>
 {% endblock %}
