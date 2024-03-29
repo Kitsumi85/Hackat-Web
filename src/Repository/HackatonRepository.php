@@ -20,7 +20,15 @@ class HackatonRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Hackaton::class);
     }
+    
+    public function GetDateLimit(int $id)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = 'SELECT `Datelimite`(' . $id . ') AS `Datelimite`;';
+        $resultSet = $conn->executeQuery($sql);
 
+        return $resultSet->fetchAssociative();
+    }
 //    /**
 //     * @return Hackaton[] Returns an array of Hackaton objects
 //     */
