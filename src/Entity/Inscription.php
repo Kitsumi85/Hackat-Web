@@ -65,11 +65,4 @@ class Inscription
 
         return $this;
     }
-
-    public function getMesHackaton(Compte $leCompte): static
-    {
-        $this->
-        return 
-    }
-
 }

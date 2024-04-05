@@ -29,6 +29,15 @@ class HackatonRepository extends ServiceEntityRepository
 
         return $resultSet->fetchAssociative();
     }
+
+    public function GetMesHackaton(int $compteId)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = 'SELECT hackaton.id, hackaton.nom, hackaton.lieu, hackaton.date_debut FROM `inscription` INNER JOIN hackaton ON hackaton.id = inscription.un_hackaton_id WHERE le_compte_id = '. $compteId .';';
+        $resultSet = $conn->executeQuery($sql);
+
+        return $resultSet->fetchAllAssociative();
+    }
 //    /**
 //     * @return Hackaton[] Returns an array of Hackaton objects
 //     */

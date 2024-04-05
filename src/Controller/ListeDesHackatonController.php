@@ -74,4 +74,15 @@ class ListeDesHackatonController extends AbstractController
             'hackaton' => $toutHackaton
         ]);
     }
+    #[Route('mes-hackaton', name: 'app_liste_de_mes_hackaton')]
+    public function mesHackaton(ManagerRegistry $doctrine): Response
+    {
+        $repository = $doctrine->getRepository(EntityHackaton::class);
+        $user = $this->getUser();
+        $mesHackaton = $repository->GetMesHackaton($user->getId()); 
+        return $this->render('liste_des_hackaton/inscritHackat.html.twig', [
+            'controller_name' => 'ListeDesHackatonController',
+            'hackaton' => $mesHackaton
+        ]);
+    }
 }

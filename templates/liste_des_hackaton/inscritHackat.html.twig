@@ -25,9 +25,9 @@
 </thead>
 {% for unHackaton in hackaton %}
 <tr>
-  <td>{{unHackaton.Nom}}</td>
-  <td>{{unHackaton.Lieu}}</td>
-  <td>{{unHackaton.DateDebut|date('d/m/y')}}</td>
+  <td>{{unHackaton.nom}}</td>
+  <td>{{unHackaton.lieu}}</td>
+  <td>{{unHackaton.date_debut|date('d/m/y')}}</td>
   <td><a href="{{path('app_detail_des_hackaton', {id:unHackaton.id})}}" class="btn btn-primary">Detail</a></td>
 </tr>
 {% endfor %}
