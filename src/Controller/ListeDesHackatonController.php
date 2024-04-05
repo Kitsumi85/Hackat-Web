@@ -23,7 +23,6 @@ class ListeDesHackatonController extends AbstractController
             $unHackaton->setDateLimInsc(new DateTime($dateLimit['Datelimite']));
             
         }
-        dump($hackaton);
         return $this->render('liste_des_hackaton/index.html.twig', [
             'controller_name' => 'ListeDesHackatonController',
             'hackaton' => $hackaton
@@ -73,6 +72,17 @@ class ListeDesHackatonController extends AbstractController
         return $this->render('liste_des_hackaton/index.html.twig', [
             'controller_name' => 'ListeDesHackatonController',
             'hackaton' => $toutHackaton
+        ]);
+    }
+    #[Route('mes-hackaton', name: 'app_liste_de_mes_hackaton')]
+    public function mesHackaton(ManagerRegistry $doctrine): Response
+    {
+        $repository = $doctrine->getRepository(EntityHackaton::class);
+        $user = $this->getUser();
+        $mesHackaton = $repository->find($user);         
+        return $this->render('liste_des_hackaton/inscritHackat.html.twig', [
+            'controller_name' => 'ListeDesHackatonController',
+            'hackaton' => $mesHackaton
         ]);
     }
 }

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Mes Hackaton{% endblock %}
+
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<table
+    data-toggle="table"
+    data-page-size="20"
+    data-pagination="true"
+    data-search="true">
+<thead>
+<tr style="background-color: #000000; color: white;">
+<th><FONT COLOR="white">Nom du hackaton</FONT></th>
+<th><FONT COLOR="white">Lieu du hackaton</FONT></th>
+<th><FONT COLOR="white">Date de début</FONT></th>
+<th><FONT COLOR="white">Bouton des détail</FONT></th>
+</tr>
+</thead>
+{% for unHackaton in hackaton %}
+<tr>
+  <td>{{unHackaton.Nom}}</td>
+  <td>{{unHackaton.Lieu}}</td>
+  <td>{{unHackaton.DateDebut|date('d/m/y')}}</td>
+  <td><a href="{{path('app_detail_des_hackaton', {id:unHackaton.id})}}" class="btn btn-primary">Detail</a></td>
+</tr>
+{% endfor %}
+
+</table>
+
+{% endblock %}
