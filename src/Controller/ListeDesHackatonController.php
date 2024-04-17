@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ListeDesHackatonController extends AbstractController
+class ListeDesHackatonController extends AbstractController 
 {
     #[Route('hackaton', name: 'app_liste_des_hackaton')]
     public function index(ManagerRegistry $doctrine): Response
