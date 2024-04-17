@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Hackaton as EntityHackaton;
+use App\Entity\Inscription;
+use DateTime;
+use Doctrine\ORM\Mapping\Id;
 use Doctrine\Persistence\ManagerRegistry;
-use src\Entity\Hackaton;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,6 +18,11 @@ class ListeDesHackatonController extends AbstractController
     {
         $repository = $doctrine->getRepository(EntityHackaton::class);
         $hackaton = $repository->findAll();
+        foreach($hackaton as $unHackaton){
+            $dateLimit = $repository->GetDateLimit($unHackaton->getId());
+            $unHackaton->setDateLimInsc(new DateTime($dateLimit['Datelimite']));
+            
+        }
         return $this->render('liste_des_hackaton/index.html.twig', [
             'controller_name' => 'ListeDesHackatonController',
             'hackaton' => $hackaton
@@ -33,9 +40,49 @@ class ListeDesHackatonController extends AbstractController
     public function detail(ManagerRegistry $doctrine, $id): Response
     {
         $repository = $doctrine->getRepository(EntityHackaton::class);
+        $repository2 = $doctrine->getRepository(Inscription::class);
+        $user = $this->getUser();
+
+        $inscrit = $repository2->findOneBy(
+            ['UnHackaton' => $id,
+            'leCompte' => $user]);
         $hackaton = $repository->find($id);
+        $dateLimit = $repository->GetDateLimit($hackaton->getId());
+        $hackaton->setDateLimInsc(new DateTime($dateLimit['Datelimite']));
         return $this->render('liste_des_hackaton/detail.html.twig', [
-            'hackaton' => $hackaton
+            'hackaton' => $hackaton,
+            'inscrit' => $inscrit
+        ]);
+    }
+    #[Route('inscription/{id}', name: 'app_inscription')]
+    public function inscription(ManagerRegistry $doctrine, $id): Response
+    {
+        $repository = $doctrine->getRepository(EntityHackaton::class);
+        $toutHackaton = $repository->findAll();
+        $hackaton = $repository->find($id);
+        $user = $this->getUser();
+        $inscription = new Inscription();
+        $inscription->setLeCompte($user);
+        $inscription->setUnHackaton($hackaton);
+        $inscription->setDateInsc(new \DateTime('now'));
+        $entityManager = $doctrine->getManager();
+        $entityManager->persist($inscription);
+        $entityManager->flush();
+
+        return $this->render('liste_des_hackaton/index.html.twig', [
+            'controller_name' => 'ListeDesHackatonController',
+            'hackaton' => $toutHackaton
+        ]);
+    }
+    #[Route('mes-hackaton', name: 'app_liste_de_mes_hackaton')]
+    public function mesHackaton(ManagerRegistry $doctrine): Response
+    {
+        $repository = $doctrine->getRepository(EntityHackaton::class);
+        $user = $this->getUser();
+        $mesHackaton = $repository->GetMesHackaton($user->getId()); 
+        return $this->render('liste_des_hackaton/inscritHackat.html.twig', [
+            'controller_name' => 'ListeDesHackatonController',
+            'hackaton' => $mesHackaton
         ]);
     }
 }

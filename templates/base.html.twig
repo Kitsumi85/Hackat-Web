@@ -16,7 +16,7 @@
     <script src="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.js"></script>
 		{% endblock %}
 
-		{% block javascripts %}{% endblock %}
+
 	</head>
 	<header>
 		<nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -31,6 +31,9 @@
 							<a class="nav-link" href="{{path('app_liste_des_hackaton')}}">Liste des Hackatons</a>
 						</li>
 						{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+						<li>
+							<a class="nav-link" href="{{ path('app_liste_de_mes_hackaton') }}">Mes Hackathons</a>
+						</li> 
 						<li>
 							<a class="nav-link" href="{{ path('app_logout') }}">Se déconnecter</a>
 						</li> 
@@ -49,5 +52,6 @@
 	</header>
 	<body>
 		{% block body %}{% endblock %}
+		{% block javascripts %}{% endblock %}
 	</body>
 </html>
