@@ -2,12 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\Favorie;
 use App\Entity\Hackaton as EntityHackaton;
 use App\Entity\Inscription;
+use App\Entity\Favoris;
 use DateTime;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -85,5 +88,28 @@ class ListeDesHackatonController extends AbstractController
             'controller_name' => 'ListeDesHackatonController',
             'hackaton' => $mesHackaton
         ]);
+    }
+
+    #[route('hackathon/{id}/favorite', name: 'app_favorite')]
+    public function getFavorite($id, ManagerRegistry $doctrine)
+    {
+        $repository = $doctrine->getRepository(EntityHackaton::class);
+        $hackaton = $repository->find($id);
+        dump($hackaton);
+        $user = $this->getUser();
+        dump($user);
+        $favorite = new Favoris();
+        $favorite->setIdCompte($user);
+        $favorite->setIdHackathon($hackaton);
+        $favorite->setIsFavori(true);
+        dump($favorite);
+        $entityManager = $doctrine->getManager();
+        $entityManager->persist($favorite);
+        $entityManager->flush();
+        $data = [
+            'favorite' => $favorite->isIsFavori()
+        ];
+
+        return new JsonResponse($data);
     }
 }

@@ -21,6 +21,9 @@
     {% if is_granted('IS_AUTHENTICATED_FULLY') and hackaton.DateLimInsc > date() and inscrit == null %}
     <a href="{{path('app_inscription', {id:hackaton.id})}}" class="btn btn-primary">S'inscrire</a>
     {% endif %}
+    {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+    <a class="favorite">Favorite </a>
+    {% endif %}
   </div>
 </div>
 {% endblock %}
