@@ -16,7 +16,7 @@ class CreerCompteController extends AbstractController
     public function index(ManagerRegistry $doctrine)
     {
         $compte = new Compte();
-        $compte->setNom('Ne');
+        $compte->setNom('bonjour');
         $compte->setPrenom('Gui');
         $compte->setMel('nGui@gmail.com');
         $compte->setTel('0123456789');
